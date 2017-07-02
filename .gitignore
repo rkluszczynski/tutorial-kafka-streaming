@@ -1,2 +1,4 @@
+/scripts/docker-compose.yml
+
 *.class
 *.log

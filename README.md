@@ -3,7 +3,7 @@
 
 ## Setup
 
-Obtain current IP address and set environement variable `` with it in `docker-compose.yml` file.
+Obtain current IP address and set environement variable `KAFKA_ADVERTISED_HOST_NAME` with it in `docker-compose.yml` file.
 Next, just type:
 
 ```bash
