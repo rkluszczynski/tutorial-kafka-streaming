@@ -1,5 +1,10 @@
-/.idea/
-/scripts/docker-compose.yml
+build/
+target/
 
 *.class
 *.log
+
+.idea/
+*.iml
+
+/scripts/docker-compose.yml

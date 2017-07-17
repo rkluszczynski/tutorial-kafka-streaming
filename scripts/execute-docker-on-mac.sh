@@ -17,7 +17,7 @@ fi
 sed "s/KAFKA_ADVERTISED_HOST_NAME:.*/KAFKA_ADVERTISED_HOST_NAME: ${ipAddress}/" ${sourceDockerConfig} > ${targetDockerConfig}
 
 cat ${targetDockerConfig}
-sleep 3
+sleep 2 && read -p "Press enter to continue..."
 
 ( cd ${scriptDir}  &&  docker-compose up --force-recreate )
 rm ${targetDockerConfig}

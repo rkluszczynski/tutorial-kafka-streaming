@@ -1,5 +1,5 @@
-# single zookeeper, single kafka borker
-version: '3'
+# single zookeeper, single kafka borker, local flink cluster
+version: '3.3'
 services:
   zookeeper:
     container_name: single-zookeeper
@@ -17,3 +17,9 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  flink:
+    container_name: local-flink-cluster
+    image: flink
+    command: local
+    ports:
+      - '8081:8081'
