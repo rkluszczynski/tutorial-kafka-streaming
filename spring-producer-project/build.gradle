@@ -1,14 +1,35 @@
-group 'io.github.rkluszczynski'
-version '1.0-SNAPSHOT'
+plugins {
+    id 'java'
+    id 'groovy'
 
-apply plugin: 'java'
+    id 'org.springframework.boot' version '1.5.4.RELEASE'
+}
+
+group = 'io.github.rkluszczynski'
+version = ''
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+bootRepackage.executable = true
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter',
+            'org.springframework.kafka:spring-kafka:1.2.2.RELEASE',
+            'com.beust:jcommander:1.58'
+
+    testCompile 'com.github.tomakehurst:wiremock:2.5.1',
+            'cglib:cglib-nodep:3.2.4',
+            'org.objenesis:objenesis:2.5.1',
+            'org.spockframework:spock-core:1.1-groovy-2.4',
+            'org.spockframework:spock-spring:1.1-groovy-2.4',
+            'org.springframework.boot:spring-boot-starter-test'
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0.1'
 }

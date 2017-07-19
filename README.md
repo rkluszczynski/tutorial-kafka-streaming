@@ -3,7 +3,7 @@
 
 ## Setup
 
-Obtain current IP address and set environement variable `KAFKA_ADVERTISED_HOST_NAME` with it in `docker-compose.yml` file.
+Obtain current IP address and set environment variable `KAFKA_ADVERTISED_HOST_NAME` with it in `docker-compose.yml` file.
 Next, just type:
 
 ```bash
@@ -18,20 +18,31 @@ and Kafka should start.
 Create topic: 
 
 ```bash
-./bin/kafka-topics.sh --create --topic topic --partitions 4 --zookeeper 192.168.1.6:2181 --replication-factor 1
+./bin/kafka-topics.sh --create --partitions 1 --replication-factor 1 --topic topic1 --zookeeper localhost:2181
 ```
 
 Produce some data:
 
 ```bash
-./bin/kafka-console-producer.sh --topic=topic1 --broker-list=192.168.1.6:9092
+./bin/kafka-console-producer.sh --topic=topic1 --broker-list=localhost:9092
 ```
 
 Consume data:
 
 ```bash
-./bin/kafka-console-consumer.sh --topic=topic1 --zookeeper=192.168.1.6:2181 --from-beginning
+./bin/kafka-console-consumer.sh --from-beginning --topic=topic1 --bootstrap-server=localhost:9092
 ```
+
+Describe topic metadata:
+
+```bash
+./bin/kafka-topics.sh --describe --topic=topic1 --zookeeper=localhost:2181
+```
+
+
+## Links 
+
+- http://blog.coffeeandcode.com/cleanup-docker-images-and-exited-containers/
 
 
 ## Credits

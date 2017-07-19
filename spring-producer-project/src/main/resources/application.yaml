@@ -1,0 +1,8 @@
+spring.main.banner-mode: 'off'
+
+kafka:
+  servers: 'localhost:9092'
+  topic: 'topic1'
+  message: ''
+
+logging.level.: 'INFO'
