@@ -10,5 +10,9 @@ spring-producer
 ## Run
 
 ```bash
-./build/libs/spring-producer.jar --kafka.servers=localhost:9092 --kafka.topic=topic1 --kafka.message=TEST
+./build/libs/spring-producer.jar \
+    --kafka.servers=localhost:9092 \
+    --kafka.topic=topic1 \
+    --kafka.message=TEST \
+    --kafka.count=1
 ```

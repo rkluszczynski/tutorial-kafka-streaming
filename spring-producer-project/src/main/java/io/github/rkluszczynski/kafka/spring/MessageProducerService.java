@@ -6,6 +6,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.stream.LongStream;
 
 import static java.util.Objects.isNull;
 
@@ -19,14 +20,33 @@ class MessageProducerService {
     @Value("${kafka.message}")
     private String kafkaMessage;
 
+    @Value("${kafka.count}")
+    private Long kafkaCount;
+
     @Autowired
     public MessageProducerService(KafkaTemplate<Integer, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
     public void produce() {
-        final String message = (isNull(kafkaMessage) || "".equals(kafkaMessage))
-                ? LocalDateTime.now().toString() : kafkaMessage;
-        kafkaTemplate.send(kafkaTopic, message);
+        LongStream
+                .rangeClosed(1, kafkaCount)
+                .forEach(this::sendOneMessage);
+    }
+
+    private void sendOneMessage(Long number) {
+        try {
+            Thread.sleep(200);
+            kafkaTemplate.send(kafkaTopic, createMessage(number));
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Producing interrupted", e);
+        }
+    }
+
+    private String createMessage(Long number) {
+        if (isNull(kafkaMessage) || "".equals(kafkaMessage)) {
+            return String.format("message %d sent at %s", number, LocalDateTime.now().toString());
+        }
+        return String.format("%s {%d}", kafkaMessage, number);
     }
 }

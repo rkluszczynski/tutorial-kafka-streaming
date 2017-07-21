@@ -4,5 +4,6 @@ kafka:
   servers: 'localhost:9092'
   topic: 'topic1'
   message: ''
+  count: 1
 
 logging.level.: 'INFO'

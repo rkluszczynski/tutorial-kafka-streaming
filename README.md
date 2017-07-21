@@ -39,6 +39,20 @@ Describe topic metadata:
 ./bin/kafka-topics.sh --describe --topic=topic1 --zookeeper=localhost:2181
 ```
 
+Eventually delete topic:
+
+```bash
+./bin/kafka-topics.sh --delete --topic=topic1 --zookeeper=localhost:2181
+```
+
+### Clean docker
+
+```bash
+docker rm single-kafka single-zookeeper local-flink-cluster
+
+docker-compose down --rmi all
+```
+
 
 ## Links 
 
